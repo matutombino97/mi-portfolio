@@ -258,6 +258,7 @@ header nav a:hover {
 .pergamino:nth-of-type(3) {
     align-self: flex-start; /* Se pega al final (Derecha) */
     margin-right: 5%;
+    padding-bottom: 10px;
 }
 .pergamino-cabecera{
     cursor: pointer;

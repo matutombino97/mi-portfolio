@@ -251,3 +251,46 @@ function manejarParticulas(){
 
 // INICIAMOS LA ANIMACIÓN
 manejarParticulas();
+
+/* =========================================
+   NAVEGACIÓN CINEMÁTICA (Scroll -> Espera -> Acción)
+   ========================================= */
+
+const linksMenu = document.querySelectorAll('nav a');
+
+linksMenu.forEach(link => {
+    link.addEventListener('click', (e) => {
+        // 1. FRENA EL SALTO BRUSCO
+        e.preventDefault(); 
+
+        const idDestino = link.getAttribute('href');
+        const seccionDestino = document.querySelector(idDestino);
+
+        if (seccionDestino) {
+            // A. CALCULA DONDE ATERRIZAR
+            // Ajusta el 120 según el tamaño de tu header fijo
+            const headerOffset = 120; 
+            const elementPosition = seccionDestino.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            // B. MUEVE LA CÁMARA (SCROLL)
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
+
+            // C. LA MAGIA DEL "TIMEOUT" (ESPERA)
+            // Esperamos 800 milisegundos (0.8 segundos) a que termine de bajar la pantalla.
+            // Recién ahí, preguntamos si hay que abrir el pergamino.
+            setTimeout(() => {
+                const cabecera = seccionDestino.querySelector('.pergamino-cabecera');
+                const contenido = seccionDestino.querySelector('.pergamino-contenido');
+
+                // Si está cerrado... ¡ÁBRELO!
+                if (!contenido.style.maxHeight || contenido.style.maxHeight === "0px") {
+                    cabecera.click(); 
+                }
+            }, 800); // <--- Juega con este número. 800ms suele ser el tiempo que tarda el scroll.
+        }
+    });
+});
