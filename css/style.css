@@ -323,6 +323,159 @@ header nav a:hover {
     line-height: 1.6; 
     font-size: 1.1rem;
 }
+/* ESTILIZANDO FICHAS */
+
+/* Separador sutil */
+.separador-ninja {
+    height: 2px;
+    background: var(--card-border); /* Usa el color del borde (dorado o rojo) */
+    margin: 20px 0;
+    opacity: 0.5;
+}
+
+.titulo-skills {
+    text-align: center;
+    color: var(--titulo-color); /* Rojo ninja */
+    font-family: 'Cinzel', serif;
+    margin-bottom: 20px;
+}
+
+/* LA GRILLA DE HABILIDADES */
+.panel-habilidades {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Si no caben, bajan */
+    gap: 15px;
+}
+
+/* LA TARJETA INDIVIDUAL */
+.skill-card {
+    background-color: var(--card-bg); /* Fondo adaptable día/noche */
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 90px; /* Tamaño fijo pequeñito */
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: default;
+}
+
+/* Efecto Hover (Levitación) */
+.skill-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border-color: #ff8c00; /* Naranja al tocar */
+}
+
+/* TEXTO DE LA HABILIDAD */
+.skill-card span {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--card-text);
+}
+
+/* ICONOS (Colores específicos de marca) */
+.icono-skill {
+    font-size: 2rem; /* Tamaño del icono */
+}
+
+.icono-skill.html { color: #e34c26; } /* Naranja oficial HTML */
+.icono-skill.css { color: #264de4; }  /* Azul oficial CSS */
+.icono-skill.js { color: #f0db4f; }   /* Amarillo JS */
+.icono-skill.python { color: #306998; } /* Azul Python */
+.icono-skill.git { color: #f1502f; }  /* Rojo Git */
+
+/* AJUSTE PARA MODO NOCHE: */
+/* Si el amarillo de JS se ve mal en fondo claro, le ponemos una sombra */
+.icono-skill.js {
+    text-shadow: 0 0 2px rgba(0,0,0,0.5); 
+}
+
+/* CONTENEDOR DEL FORMULARIO */
+.formulario-invocacion {
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto; /* Centrado */
+}
+
+/* LOS CAMPOS (INPUTS) */
+.campo-ninja {
+    position: relative;
+    margin-bottom: 30px; /* Espacio entre líneas */
+}
+
+/* El input en sí (invisible salvo la línea de abajo) */
+.campo-ninja input,
+.campo-ninja textarea {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1rem;
+    color: var(--color-texto); /* Se adapta al modo noche */
+    border: none;
+    border-bottom: 2px solid #aaa; /* Línea gris */
+    background: transparent; /* Fondo transparente para ver el papel */
+    outline: none;
+    transition: border-color 0.3s;
+    font-family: 'Lato', sans-serif;
+}
+
+/* Cuando tocas el input, la línea se pone naranja/roja */
+.campo-ninja input:focus,
+.campo-ninja textarea:focus {
+    border-bottom-color: #ff8c00;
+}
+
+/* LAS ETIQUETAS (LABELS) FLOTANTES */
+.campo-ninja label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    color: #888;
+    pointer-events: none; /* Para poder hacer clic a través de ellas */
+    transition: 0.3s ease all;
+}
+
+/* La magia: Cuando escribes, la etiqueta sube */
+.campo-ninja input:focus ~ label,
+.campo-ninja input:not(:placeholder-shown) ~ label,
+.campo-ninja textarea:focus ~ label,
+.campo-ninja textarea:not(:placeholder-shown) ~ label {
+    top: -20px;
+    font-size: 0.8rem;
+    color: #ff8c00;
+    font-weight: bold;
+}
+
+/* EL BOTÓN SELLO */
+.btn-sello {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 15px;
+    background-color: #a50000; /* Rojo Sangre */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.btn-sello:hover {
+    background-color: #cc0000;
+    transform: translateY(-2px);
+}
+
+.btn-sello:active {
+    transform: scale(0.98); /* Efecto de presionar */
+}
 
 #kunai{
     position: fixed;
@@ -525,6 +678,17 @@ header nav a:hover {
     text-decoration: none;
     font-weight: bold;
 }
+
+#lienzo-chakra {
+    position: fixed; /* Se queda quieto aunque hagas scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999; /* Por encima de casi todo (menos el header quizás) */
+    pointer-events: none; /* MAGIA: Permite hacer clic "a través" del dibujo */
+}
+
 
 
 footer {

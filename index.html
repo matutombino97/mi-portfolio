@@ -6,10 +6,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css" />
   <title>Portfolio || Matias Sosa</title>
 </head>
 <body>
+  <canvas id="lienzo-chakra"></canvas>
   <div class="overlay-fondo"></div>
   <header>
     <img class="img-header" src="img/naruto-header.jpg" alt="Imagen de Naruto" />
@@ -47,6 +49,47 @@
         Me interesa construir proyectos reales, entender cómo funcionan por dentro y mejorar continuamente tanto el código como la experiencia del usuario. 
         Combino diseño, lógica y funcionalidad para ofrecer soluciones simples y efectivas, tanto para clientes como para proyectos propios.
         </p>
+        <div class="separador-ninja"></div>
+
+        <h4 class="titulo-skills">🔥 Mis Jutsus (Habilidades)</h4>
+
+        <div class="panel-habilidades">
+              
+              <div class="skill-card">
+                  <div class="icono-skill html">
+                      <i class="fa-brands fa-html5"></i>
+                  </div>
+                  <span>HTML5</span>
+              </div>
+
+              <div class="skill-card">
+                  <div class="icono-skill css">
+                      <i class="fa-brands fa-css3-alt"></i>
+                  </div>
+                  <span>CSS3</span>
+              </div>
+
+              <div class="skill-card">
+                  <div class="icono-skill js">
+                      <i class="fa-brands fa-js"></i>
+                  </div>
+                  <span>JavaScript</span>
+              </div>
+
+              <div class="skill-card">
+                  <div class="icono-skill python">
+                      <i class="fa-brands fa-python"></i>
+                  </div>
+                  <span>Python</span>
+              </div>
+
+              <div class="skill-card">
+                  <div class="icono-skill git">
+                      <i class="fa-brands fa-git-alt"></i>
+                  </div>
+                  <span>Git / GitHub</span>
+              </div>
+        </div>
       </div>
     </section>
 
@@ -119,14 +162,41 @@
                       💬 Invocar por WhatsApp
                   </a>
 
-                  <a href="mailto:matuprograma97@gmail.com" class="btn-contacto email">
-                      📧 Enviar Pergamino (Email)
-                  </a>
+                  <div class="formulario-invocacion">
+                      <p class="texto-invocacion">
+                          ----------------------------------------------------------------------------------
+                          Deja tu mensaje en el pergamino y un cuervo mensajero me lo traerá de inmediato.
+                      </p>
+
+                      <form action="https://formspree.io/f/mlggpwyw" method="POST">
+                          
+                          <div class="campo-ninja">
+                              <input type="text" name="name" required placeholder=" " id="nombre">
+                              <label for="nombre">Tu Nombre / Aldea</label>
+                          </div>
+
+                          <div class="campo-ninja">
+                              <input type="email" name="email" required placeholder=" " id="email">
+                              <label for="email">Tu Correo Electrónico</label>
+                          </div>
+
+                          <div class="campo-ninja">
+                              <textarea name="message" required placeholder=" " id="mensaje" rows="4"></textarea>
+                              <label for="mensaje">Detalles de la Misión</label>
+                          </div>
+
+                          <button type="submit" class="btn-sello">
+                              <span class="sello-texto">Enviar Pergamino</span>
+                              <div class="sello-icono">🔥</div>
+                          </button>
+
+                      </form>
+                  </div>
 
                   <div class="redes-sociales">
-                      <a href="https://linkedin.com/in/tu-usuario" target="_blank">LinkedIn</a>
+                      <a href="https://www.linkedin.com/in/matias-facundo-sosa-guerraz-179737227/" target="_blank">LinkedIn</a>
                       <span>|</span>
-                      <a href="https://github.com/tu-usuario" target="_blank">GitHub</a>
+                      <a href="https://github.com/matutombino97" target="_blank">GitHub</a>
                   </div>
               </div>
           </div>

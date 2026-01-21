@@ -163,3 +163,91 @@ btnSharingan.addEventListener('click', () => {
 if(localStorage.getItem('modo') === 'noche'){
     body.classList.add('modo-sharingan');
 }
+
+
+/* =========================================
+   EFECTO DE CHAKRA (PARTÍCULAS)
+   ========================================= */
+const canvas = document.getElementById('lienzo-chakra');
+const ctx = canvas.getContext('2d');
+
+// Ajustamos el canvas al tamaño de la pantalla
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particulasArray = [];
+
+// Manejamos el redimensionamiento de ventana
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+// El objeto Mouse para saber dónde dibujar
+const mouse = {
+    x: null,
+    y: null
+}
+
+window.addEventListener('mousemove', (event) => {
+    mouse.x = event.x;
+    mouse.y = event.y;
+    // Creamos 2 o 3 partículas por cada movimiento
+    for (let i = 0; i < 3; i++){
+        particulasArray.push(new Particula());
+    }
+});
+
+// CLASE PARTÍCULA (El molde de cada bolita de chakra)
+class Particula {
+    constructor(){
+        this.x = mouse.x;
+        this.y = mouse.y;
+        this.size = Math.random() * 5 + 1; // Tamaño aleatorio entre 1 y 6
+        this.speedX = Math.random() * 3 - 1.5; // Velocidad aleatoria X
+        this.speedY = Math.random() * 3 - 1.5; // Velocidad aleatoria Y
+        
+        // COLOR DINÁMICO: Preguntamos si el Sharingan está activo
+        if(document.body.classList.contains('modo-sharingan')){
+            this.color = 'rgba(255, 0, 0, 0.8)'; // Rojo Sangre
+        } else {
+            this.color = 'rgba(0, 150, 255, 0.8)'; // Azul Chakra
+        }
+    }
+
+    update(){
+        this.x += this.speedX;
+        this.y += this.speedY;
+        // Hacemos que se achique
+        if (this.size > 0.2) this.size -= 0.1;
+    }
+
+    draw(){
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+// BUCLE DE ANIMACIÓN (Se repite 60 veces por segundo)
+function manejarParticulas(){
+    // Limpiamos el lienzo para dibujar el siguiente cuadro (con rastro suave)
+    // Usamos 'clearRect' para borrar todo o un rectángulo semitransparente para estela
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = 0; i < particulasArray.length; i++){
+        particulasArray[i].update();
+        particulasArray[i].draw();
+
+        // Si la partícula es muy chica, la borramos del array para que la PC no explote
+        if (particulasArray[i].size <= 0.3){
+            particulasArray.splice(i, 1);
+            i--;
+        }
+    }
+    requestAnimationFrame(manejarParticulas);
+}
+
+// INICIAMOS LA ANIMACIÓN
+manejarParticulas();
