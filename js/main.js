@@ -137,3 +137,29 @@ cabeceras.forEach(cabecera => {
 
     });
 })
+
+/* =========================================
+   MODO SHARINGAN (Dark Mode)
+   ========================================= */
+const btnSharingan = document.getElementById('btn-sharingan');
+const body = document.body;
+
+btnSharingan.addEventListener('click', () => {
+    // 1. Alternar la clase en el body
+    body.classList.toggle('modo-sharingan');
+
+    // 2. Efecto visual opcional (rotar el botón)
+    btnSharingan.classList.toggle('activo');
+    
+    // 3. Guardar preferencia (Para que recuerde si recargas la página)
+    if(body.classList.contains('modo-sharingan')){
+        localStorage.setItem('modo', 'noche');
+    } else {
+        localStorage.setItem('modo', 'dia');
+    }
+});
+
+// 4. Al cargar la página, revisar si ya había elegido modo noche
+if(localStorage.getItem('modo') === 'noche'){
+    body.classList.add('modo-sharingan');
+}

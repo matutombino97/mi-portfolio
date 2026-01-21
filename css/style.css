@@ -3,6 +3,36 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+/* 1. DEFINIMOS LOS COLORES DEL DÍA (Por defecto) */
+:root {
+    --fondo-aldea: url('../img/aldea-puertas.jpg'); /* Tu imagen actual */
+    --color-texto: #333;
+    --color-h2: #ff8c00;
+    --overlay-color: rgba(255, 255, 255, 0.4); /* Overlay claro */
+    --header-bg: rgba(20, 20, 20, 0.95);
+    --pergamino-bg: #fdf5e6; /* Color crema del papel */
+    --titulo-color: #a50000; /* Rojo normal */
+    --card-bg: #fffaf0; /* Fondo claro original */
+    --card-border: #d4af37; /* Borde dorado original */
+    --card-text: #333;      /* Texto oscuro */
+}
+
+/* 2. DEFINIMOS LA CLASE "MODO NOCHE" (Cuando se active el Sharingan) */
+body.modo-sharingan {
+    /* Cambiamos la imagen a una oscura (o la misma con filtro, por ahora usa la misma) */
+    --fondo-aldea: url('../img/aldea-noche.jpg'); /* Si consigues una de noche, mejor */
+    --color-texto: #e0e0e0; /* Texto claro */
+    --color-h2: #e0e0e0; 
+    --overlay-color: rgba(0, 0, 0, 0.85); /* Overlay MUY oscuro (Tsukuyomi) */
+    --header-bg: #000;
+    --pergamino-bg: #2a2a2a; /* Papel oscuro */
+    --titulo-color: #ff3333; /* Rojo brillante Sharingan */
+    --card-bg: #1f1f1f; /* Fondo gris casi negro */
+    --card-border: #a50000; /* Borde rojo sangre */
+    --card-text: #ddd;      /* Texto claro */
+    
+}
 main {
     flex: 1;
     width: 100%;
@@ -15,13 +45,13 @@ body{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-image: url('../img/aldea-puertas.jpg'); 
+    background-image: var(--fondo-aldea);
     background-size: cover; 
     background-position: center;
     background-attachment: fixed; /* EFECTO PARALLAX: La imagen se queda quieta al hacer scroll */
     background-repeat: no-repeat;
     font-family: 'Lato', sans-serif;
-    color: #333
+    color: var(--color-texto);
 
 }
 
@@ -78,6 +108,42 @@ header nav a:hover {
     color: #ff8c00; 
 }
 
+/* EL CONTENEDOR DEL BOTÓN */
+.boton-ojo {
+    background: none; /* Sin fondo gris de botón feo */
+    border: none;     /* Sin borde */
+    cursor: pointer;  /* Manito al pasar el mouse */
+    width: 50px;      /* Tamaño controlado */
+    height: 50px;
+    padding: 0;
+    margin-left: 20px; /* Separarlo un poco del menú */
+    
+    /* La magia de la animación */
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Efecto rebote */
+}
+
+/* LA IMAGEN DEL SHARINGAN */
+.boton-ojo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%; /* Redondo perfecto */
+    /* Un brillo rojo suave para que parezca activado */
+    box-shadow: 0 0 10px rgba(165, 0, 0, 0.6); 
+    transition: filter 0.3s;
+}
+
+.boton-ojo:hover img {
+    filter: brightness(1.2); /* Brilla más al pasar el mouse */
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+}
+
+/* ESTADO ACTIVADO (MODO NOCHE) */
+/* Esta clase se agrega con JS cuando haces clic */
+.boton-ojo.activo {
+    transform: rotate(360deg); /* ¡Gira completo! */
+}
+
 /* Ajuste imagen header */
 .img-header {
     height: 50px; 
@@ -96,12 +162,12 @@ header nav a:hover {
     font-family: 'Cinzel', serif;
     font-size: 2.5rem; 
     font-weight: bold;
-    color: #b87005; 
     margin-bottom: 10px;
+    color: var(--color-h2);
     text-shadow: 
-    0 0 20px rgba(0, 0, 0, 0.8),
-    0 0 40px rgba(0, 0, 0, 0.6),
-    2px 2px 8px rgba(0, 0, 0, 0.9);
+        2px 2px 4px rgba(0, 0, 0, 0.9),
+        0 0 20px rgba(255, 140, 0, 0.5);
+
 }
 
 /* Opcional: Un subtítulo */
@@ -177,6 +243,7 @@ header nav a:hover {
 
 /* El Primer Pergamino (Sobre Mí) -> A la derecha */
 .pergamino:nth-of-type(1) {
+    margin-top: -30px;
     align-self: flex-end; /* Se pega al inicio del eje cruzado (Derecha) */
     margin-left: 5%; /* Un margen para no pegarse al borde de la pantalla */
 }
@@ -193,7 +260,6 @@ header nav a:hover {
     margin-right: 5%;
 }
 .pergamino-cabecera{
- 
     cursor: pointer;
     color: #f0e68c;
     font-weight: bold;
@@ -202,11 +268,11 @@ header nav a:hover {
     background-size: 100% 100%; /* Forza a la imagen a estirarse para encajar exacta */
     background-repeat: no-repeat;
     /* Ajustes para que el texto no se salga del dibujo */
-    min-height: 80px; /* Asegura una altura mínima para que se vea el rollo */
+    min-height: 140px; /* Asegura una altura mínima para que se vea el rollo */
     display: flex;
     align-items: center; /* Centra el texto verticalmente en el rollo */
     justify-content: center; 
-    padding: 20px 40px;
+    padding: 30px 60px;
     /* Añadimos sombra para volumen */
     box-shadow: 0 4px 6px rgba(0,0,0,0.3);
     position: relative; /* Necesario para poner la cuerda encima */
@@ -214,14 +280,18 @@ header nav a:hover {
 
 .pergamino-cabecera h3 {
     font-family: 'Cinzel', serif; 
+    padding: 5px 15px; 
     color: #fff; 
     text-shadow: 
+        3px 3px 0 #000,
         -1px -1px 0 #000,  
          1px -1px 0 #000,
         -1px  1px 0 #000,
          1px  1px 0 #000;
-    font-size: 1.4rem;
-    letter-spacing: 1px; 
+    font-size: 1.5rem;
+    letter-spacing: 2px; 
+    text-transform: uppercase;
+
     margin: 0; /* Quitamos margen por defecto */
     position: relative; 
     z-index: 20; /* Para que esté ENCIMA de la cuerda roja */
@@ -235,15 +305,13 @@ header nav a:hover {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s ease-out;
-    background-color: #fdf5e6; 
+    background-color: var(--pergamino-bg);
     /* Márgenes y Bordes */
     margin: 0 15px; 
     border-radius: 0 0 5px 5px;
     border-left: 2px solid #d4af37; 
     border-right: 2px solid #d4af37;
     border-bottom: 2px solid #d4af37;
-    
-
     box-shadow: inset 0 10px 10px -10px rgba(0,0,0,0.5);
 }
 
@@ -251,7 +319,7 @@ header nav a:hover {
 .pergamino-contenido p {
     padding: 20px;
     font-family: 'Lato', sans-serif; 
-    color: #4a3b2a; 
+    color: var(--color-texto);
     line-height: 1.6; 
     font-size: 1.1rem;
 }
@@ -302,8 +370,9 @@ header nav a:hover {
 
 /* 2. LA TARJETA (El Papel de Misión) */
 .tarjeta-mision {
-    background-color: #fffaf0; /* Un papel más claro que el fondo del pergamino */
-    border: 1px solid #d4af37;
+    background-color: var(--card-bg); /* Un papel más claro que el fondo del pergamino */
+    border: 1px solid var(--card-border);
+    color: var(--card-text);
     border-radius: 8px;
     padding: 15px;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
