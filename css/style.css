@@ -69,13 +69,12 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 15px 5%; /* Espaciado lateral */
-    
-    background-color: rgba(20, 20, 20, 0.95); 
-    border-bottom: 3px solid #ff8c00; /* Línea naranja abajo */
+    background-color: #0b1021;
+    border-bottom: 4px solid #bdc3c7;
     position: sticky; /* Se pega arriba al bajar */
     top: 0;
     z-index: 1000; /* Encima de todo (incluso del kunai volando) */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -89,6 +88,7 @@ header h1 {
 }
 
 header nav ul {
+    list-style:none;
     gap: 30px;
     margin: 0;
     padding: 0;
@@ -165,7 +165,7 @@ header nav a:hover {
     margin-bottom: 10px;
     color: var(--color-h2);
     text-shadow: 
-        2px 2px 4px rgba(0, 0, 0, 0.9),
+        2px 2px 4px rgba(196, 37, 37, 0.9),
         0 0 20px rgba(255, 140, 0, 0.5);
 
 }
@@ -184,7 +184,7 @@ header nav a:hover {
 
 .naruto-guardian{
     position: fixed;
-    z-index:100;
+    z-index:5;
     bottom: 0;
     right: 0;
     width: 250px;
@@ -201,8 +201,6 @@ header nav a:hover {
     border-radius: 50%;
     top: 22.5%;
     left: 62%;
-    border: 0 solid red;  
-    background-color: rgba(255, 0, 0, 0.3); 
     overflow: hidden; 
   
 }
@@ -215,8 +213,6 @@ header nav a:hover {
     border-radius: 50%;
     top: 22.5%;
     left: 46%;
-    border: 0 solid red;  
-    background-color: rgba(255, 0, 0, 0.3); 
     overflow: hidden; 
 }
 
@@ -237,6 +233,7 @@ header nav a:hover {
     max-width: 600px; /* Que no sean gigantes en PC */
     margin-bottom: 150px; /* ESPACIO VITAL: Esto fuerza el scroll hacia abajo */
     position: relative; /* Para que el z-index funcione bien */
+    z-index: 10;
 }
 
 /* 2. LA MAGIA DEL ZIG-ZAG */
@@ -265,7 +262,7 @@ header nav a:hover {
     color: #f0e68c;
     font-weight: bold;
     text-align: center;
-    background-image: url('../img/pergamino.png'); 
+    background-image: url('../img/pergamino-azul.png'); 
     background-size: 100% 100%; /* Forza a la imagen a estirarse para encajar exacta */
     background-repeat: no-repeat;
     /* Ajustes para que el texto no se salga del dibujo */
@@ -495,7 +492,7 @@ header nav a:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); /* Esto la centra perfecto */
-    width: 90%;
+    width: 80%;
     height: 5px;
     background-color: #a50000; /* Rojo intenso */
     z-index: 10;
@@ -693,7 +690,7 @@ header nav a:hover {
 
 
 footer {
-    background-color: #1a1a1a; /* Oscuro */
+    background-color: #383737;
     color: #888;
     padding: 40px 20px;
     margin-top: 50px; /* Separarlo del contenido */
