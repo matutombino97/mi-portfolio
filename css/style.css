@@ -1,0 +1,541 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+main {
+    flex: 1;
+    width: 100%;
+    display: flex;         
+    flex-direction: column; 
+    padding-top: 50px;    
+}  
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: url('../img/aldea-puertas.jpg'); 
+    background-size: cover; 
+    background-position: center;
+    background-attachment: fixed; /* EFECTO PARALLAX: La imagen se queda quieta al hacer scroll */
+    background-repeat: no-repeat;
+    font-family: 'Lato', sans-serif;
+    color: #333
+
+}
+
+.overlay-fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: -1; /* Se queda atrás de todo */
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%; /* Espaciado lateral */
+    
+    background-color: rgba(20, 20, 20, 0.95); 
+    border-bottom: 3px solid #ff8c00; /* Línea naranja abajo */
+    position: sticky; /* Se pega arriba al bajar */
+    top: 0;
+    z-index: 1000; /* Encima de todo (incluso del kunai volando) */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+
+header h1 {
+    position: static; 
+    transform: none;
+    font-family: 'Cinzel', serif;
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+header nav ul {
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+header nav a {
+    color: #fff; 
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+    position: relative; 
+}
+
+header nav a:hover {
+    color: #ff8c00; 
+}
+
+/* Ajuste imagen header */
+.img-header {
+    height: 50px; 
+    border-radius: 50%; 
+    border: 2px solid #ff8c00;
+}
+
+/* Sección de Introducción */
+.intro {
+    text-align: center;
+    padding: 60px 20px;
+    margin-bottom: 30px;
+}
+
+.intro h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem; 
+    font-weight: bold;
+    color: #b87005; 
+    margin-bottom: 10px;
+    text-shadow: 
+    0 0 20px rgba(0, 0, 0, 0.8),
+    0 0 40px rgba(0, 0, 0, 0.6),
+    2px 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+/* Opcional: Un subtítulo */
+.intro p {
+    font-size: 1.2rem;
+    color: #555;
+    background-color: rgba(255,255,255,0.7); 
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+/*IMAGEN NARUTO */
+
+.naruto-guardian{
+    position: fixed;
+    z-index:100;
+    bottom: 0;
+    right: 0;
+    width: 250px;
+}
+.naruto-guardian img{
+    width: 100%;
+}
+.ojo-izquierdo {
+    position: absolute;
+    overflow: hidden;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color:transparent;
+    border-radius: 50%;
+    top: 22.5%;
+    left: 62%;
+    border: 0 solid red;  
+    background-color: rgba(255, 0, 0, 0.3); 
+    overflow: hidden; 
+  
+}
+.ojo-derecho {
+    position: absolute;
+    overflow: hidden;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: transparent;
+    border-radius: 50%;
+    top: 22.5%;
+    left: 46%;
+    border: 0 solid red;  
+    background-color: rgba(255, 0, 0, 0.3); 
+    overflow: hidden; 
+}
+
+.pupila {
+  width: 7px;
+  height: 7px;
+  background-color: rgb(8, 5, 5);
+  border-radius: 50%;
+  position: absolute;
+  top: 52%;
+  left: 62%;
+  transform: translate(-50%, -50%);
+}
+
+/* 1. CONTENEDOR GENERAL DE CADA SECCIÓN */
+.pergamino {
+    width: 80%; /* No ocupan todo el ancho, para poder moverlos */
+    max-width: 600px; /* Que no sean gigantes en PC */
+    margin-bottom: 150px; /* ESPACIO VITAL: Esto fuerza el scroll hacia abajo */
+    position: relative; /* Para que el z-index funcione bien */
+}
+
+/* 2. LA MAGIA DEL ZIG-ZAG */
+
+/* El Primer Pergamino (Sobre Mí) -> A la derecha */
+.pergamino:nth-of-type(1) {
+    align-self: flex-end; /* Se pega al inicio del eje cruzado (Derecha) */
+    margin-left: 5%; /* Un margen para no pegarse al borde de la pantalla */
+}
+
+/* El Segundo Pergamino (Proyectos) -> Al Centro */
+.pergamino:nth-of-type(2) {
+    align-self: center; /* Se queda en el medio */
+}
+
+/* El Tercer Pergamino (Contacto) -> A la Izquierda */
+
+.pergamino:nth-of-type(3) {
+    align-self: flex-start; /* Se pega al final (Derecha) */
+    margin-right: 5%;
+}
+.pergamino-cabecera{
+ 
+    cursor: pointer;
+    color: #f0e68c;
+    font-weight: bold;
+    text-align: center;
+    background-image: url('../img/pergamino.png'); 
+    background-size: 100% 100%; /* Forza a la imagen a estirarse para encajar exacta */
+    background-repeat: no-repeat;
+    /* Ajustes para que el texto no se salga del dibujo */
+    min-height: 80px; /* Asegura una altura mínima para que se vea el rollo */
+    display: flex;
+    align-items: center; /* Centra el texto verticalmente en el rollo */
+    justify-content: center; 
+    padding: 20px 40px;
+    /* Añadimos sombra para volumen */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    position: relative; /* Necesario para poner la cuerda encima */
+}
+
+.pergamino-cabecera h3 {
+    font-family: 'Cinzel', serif; 
+    color: #fff; 
+    text-shadow: 
+        -1px -1px 0 #000,  
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+    font-size: 1.4rem;
+    letter-spacing: 1px; 
+    margin: 0; /* Quitamos margen por defecto */
+    position: relative; 
+    z-index: 20; /* Para que esté ENCIMA de la cuerda roja */
+}
+.pergamino-cabecera.activo {
+    /* Por ejemplo, un borde brillante para saber que está seleccionado */
+    filter: brightness(1.2); 
+}
+
+.pergamino-contenido {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+    background-color: #fdf5e6; 
+    /* Márgenes y Bordes */
+    margin: 0 15px; 
+    border-radius: 0 0 5px 5px;
+    border-left: 2px solid #d4af37; 
+    border-right: 2px solid #d4af37;
+    border-bottom: 2px solid #d4af37;
+    
+
+    box-shadow: inset 0 10px 10px -10px rgba(0,0,0,0.5);
+}
+
+
+.pergamino-contenido p {
+    padding: 20px;
+    font-family: 'Lato', sans-serif; 
+    color: #4a3b2a; 
+    line-height: 1.6; 
+    font-size: 1.1rem;
+}
+
+#kunai{
+    position: fixed;
+    width: 100px;
+    opacity: 0;
+    transition: all 0.4s ease-in;
+    z-index:200;
+    bottom: 0;
+    right:0;
+    transform-origin: center center;
+
+}
+
+.cuerda-sello {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Esto la centra perfecto */
+    width: 90%;
+    height: 5px;
+    background-color: #a50000; /* Rojo intenso */
+    z-index: 10;
+    transition: opacity 0.1s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Sombra para que destaque */
+}
+
+/* EL EFECTO DE CORTE */
+/* Cuando la cabecera tenga la clase 'activo', 
+   busca a la cuerda que está adentro y bájale la opacidad a 0" */
+.pergamino-cabecera.activo .cuerda-sello {
+    opacity: 0;
+}
+
+
+/* COMPONENTES INTERNOS */
+
+/* 1. EL CONTENEDOR (La Grilla) */
+.galeria-proyectos {
+    display: grid;
+    /* Esto es magia: crea columnas automáticas según el espacio */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* 2. LA TARJETA (El Papel de Misión) */
+.tarjeta-mision {
+    background-color: #fffaf0; /* Un papel más claro que el fondo del pergamino */
+    border: 1px solid #d4af37;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.tarjeta-mision:hover {
+    transform: translateY(-5px); /* Se levanta un poquito al pasar el mouse */
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+}
+
+/* 3. TIPOGRAFÍA INTERNA */
+.encabezado-mision {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px dashed #ccc; /* Línea de recorte */
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.encabezado-mision h4 {
+    margin: 0;
+    color: #a50000; /* Rojo título */
+    font-family: 'Cinzel', serif;
+}
+
+.rango {
+    font-size: 0.8rem;
+    font-weight: bold;
+    background: #333;
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* 4. TAGS DE TECNOLOGÍA (Las píldoras) */
+.tecnologias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 15px 0;
+}
+
+.tech-tag {
+    font-size: 0.75rem;
+    background-color: #e0d8c0;
+    padding: 4px 8px;
+    border-radius: 12px;
+    color: #555;
+    font-weight: bold;
+}
+
+/* 5. BOTONES NINJA */
+.acciones-mision {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-ninja {
+    flex: 1; /* Que ocupen todo el ancho disponible */
+    text-align: center;
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+/* Botón Principal (Naranja Naruto) */
+.btn-ninja {
+    background-color: #ff8c00; 
+    color: white;
+}
+.btn-ninja:hover {
+    background-color: #e07b00;
+}
+
+/* Botón Secundario (Gris/Negro) */
+.btn-ninja.secundario {
+    background-color: #333;
+}
+.btn-ninja.secundario:hover {
+    background-color: #000;
+}
+
+/* Contenedor centrado */
+.centro-contacto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
+
+.texto-invocacion {
+    font-size: 1.1rem;
+    color: #4a3b2a;
+    max-width: 500px; /* Para que no se lea muy ancho en pantallas grandes */
+}
+
+.opciones-contacto {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 350px; /* Ancho máximo de los botones */
+}
+
+/* Estilo Base de Botones de Contacto */
+.btn-contacto {
+    display: block;
+    padding: 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-contacto:hover {
+    transform: translateY(-3px); /* Efecto de elevación */
+    box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+}
+
+/* Estilos Específicos */
+.btn-contacto.whatsapp {
+    background-color: #25D366; /* Verde WhatsApp */
+    color: white;
+    font-size: 1.1rem;
+}
+
+.btn-contacto.email {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+/* Redes Sociales al final */
+.redes-sociales {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.redes-sociales a {
+    color: #a50000; /* Rojo Ninja */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+footer {
+    background-color: #1a1a1a; /* Oscuro */
+    color: #888;
+    padding: 40px 20px;
+    margin-top: 50px; /* Separarlo del contenido */
+    text-align: center;
+    border-top: 3px solid #ff8c00;
+}
+
+.footer-content p {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.footer-links a {
+    color: #ccc;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #ff8c00;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN (Móvil y Tablets)
+   ========================================= */
+
+@media (max-width: 768px) {
+    
+    /* 1. Arreglamos el Zig-Zag */
+    .pergamino {
+        width: 95%; /* Que ocupe casi todo el ancho */
+        margin-left: 0 !important; /* Borramos los márgenes laterales */
+        margin-right: 0 !important;
+        align-self: center !important; /* Todos centrados */
+        margin-bottom: 80px; /* Menos espacio entre ellos */
+    }
+
+    /* 2. Ajustamos la Cabecera del Pergamino */
+    .pergamino-cabecera {
+        padding: 15px 20px; 
+        min-height: 60px;
+    }
+
+    .pergamino-cabecera h3 {
+        font-size: 1.1rem; 
+    }
+
+    #kunai {
+        display: none; /* Adiós kunai en celular */
+    }
+    
+    /* 4. Ajuste del Título Principal */
+    .intro h2 {
+        font-size: 1.8rem;
+    }
+
+    /* 5. Ajuste del Header */
+    header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+  
+    .naruto-guardian {
+        width: 120px; /* En PC mide 250px, en tablet o celu lo bajamos a menos de la mitad */
+        right: -10px; /* Lo pegamos un poquito más al borde derecho */
+    }
+
+    .ojo-izquierdo, .ojo-derecho {
+        width: 4px;
+        height: 4px;
+    }
+    .pupila {
+        width: 2px;
+        height: 2px;
+    }
+
+}
